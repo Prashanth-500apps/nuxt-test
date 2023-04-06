@@ -16,13 +16,13 @@
         :key="index"
         class="border p-4 rounded-md mb-3 shadow-sm bg-white flex group justify-between"
       >
-        <section @click="prefillData(template)">
+        <section>
           <h5 class="font-[500] text-md mb-2">{{ template.name }}</h5>
           <span class="text-gray-600">{{ template.subject }} - </span>
           <span class="text-gray-600">{{ template.body }}</span>
         </section>
         <div class="flex group-hover:visible invisible">
-          <PencilSquareIcon @click="editTemplate(template.uid)" class="h-5 w-5" aria-hidden="true" ></PencilSquareIcon>
+          <PencilSquareIcon @click="editTemplate(template)" class="h-5 w-5" aria-hidden="true" ></PencilSquareIcon>
           <TrashIcon @click="deleteTemplate(template.uid)" class="h-5 w-5" aria-hidden="true" ></TrashIcon>
           </div>
       </div>
@@ -58,14 +58,14 @@
         </span>
       </div>
     </div>
-   <CollectionAdd />
+   <CollectionAdd v-if="!show" />
+   <CollectionEdit v-if="show" :templateEmailData="editData" :key="render"/>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import { TrashIcon,PencilSquareIcon } from '@heroicons/vue/24/outline'
-
-
+const render = ref(0)
 
 const props = defineProps({
   // Get Template  Data
@@ -76,13 +76,16 @@ const props = defineProps({
     ],
   },
 });
+const editData = ref({});
+const show = ref(false)
 
 // Prefill data when an existing template is selected
-const prefillData = (data: any) => {
-  
-  name.value = data.name;
-  body.value = data.body;
-  subject.value = data.subject;
+const editTemplate = (data: object) => {
+show.value = true
+editData.value = JSON.stringify(data)
+  render.value++;
+  console.log("------->", editData)
+
 };
 
 const getOptions = {
@@ -111,23 +114,5 @@ const deleteTemplateData = useAuthLazyFetchDelete (
     `https://v1-orm-lib.mars.hipso.cc/email-templates/${data}`,
 deleteOptions
 )
-    }
-
-
-const editTemplate = (data:any) => {
-   const editOptions = {
-    method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiZTk3YTIxZjM4ZDc4NDgwYjlhYjdhOTI0M2Q0NjViNzgiLCJkIjoiMTY4MDA5NyIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyODc4Mjd9.qFyxIJYJLihyxfui4QRMOLjJgwBr95z3N3lWRDz89ZU`,
-  },
-}
-console.log("data----in put--->",data)
-
-const editTemplateData = useAuthLazyFetchPut (
-    `https://v1-orm-lib.mars.hipso.cc/email-templates/${data}`,
-editOptions
-)
-console.log("editTemplateData---->",editTemplateData)
     }
 </script>
