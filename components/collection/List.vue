@@ -1,22 +1,10 @@
 <template>
   <div
-    class="grid grid-rows-3 grid-flow-col grid-cols-4 border w-[80vw] mx-auto my-5 rounded-lg pr-[4px]"
+    class="grid grid-rows-3 grid-flow-col border w-[80vw] mx-auto my-5 rounded-lg pr-[4px]"
   >
     <div
       class="row-span-3 bg-gray-50 border-r p-5 rounded-l-lg h-[calc(100vh-150px)] overflow-auto"
     >
-     <div class="pb-3 w-[100%]">
-        <!-- Adding template to the list -->
-        <button
-          class="bg-white hover:bg-gray-50 hover:text-gray-800 border focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600 focus-visible:outline-offset-2 font-semibold inline-flex items-center justify-center px-3 py-3 rounded-md shadow-sm text-gray-600 text-sm w-[100%]"
-          @click="addTemplate(body)"
-        >
-          <span>
-            <IconCSS name="material-symbols:add" class="mr-2" size="20" />
-          </span>
-          Add Template
-        </button>
-      </div>
       <!-- Show list of created templates 
       
        v-if="
@@ -26,14 +14,14 @@
       <div
         v-for="(template,index) in emailTemplate.data._rawValue"
         :key="index"
-        class="border p-4 rounded-md mb-3 shadow-sm bg-white"
+        class="border p-4 rounded-md mb-3 shadow-sm bg-white flex group justify-between"
       >
         <section @click="prefillData(template)">
           <h5 class="font-[500] text-md mb-2">{{ template.name }}</h5>
           <span class="text-gray-600">{{ template.subject }} - </span>
           <span class="text-gray-600">{{ template.body }}</span>
         </section>
-        <div class="flex">
+        <div class="flex group-hover:visible invisible">
           <PencilSquareIcon @click="editTemplate(template.uid)" class="h-5 w-5" aria-hidden="true" ></PencilSquareIcon>
           <TrashIcon @click="deleteTemplate(template.uid)" class="h-5 w-5" aria-hidden="true" ></TrashIcon>
           </div>
@@ -89,14 +77,6 @@ const props = defineProps({
   },
 });
 
-
-// Declaring variables
-let body = ref("");
-let name = ref("");
-let subject = ref("");
-
-
-
 // Prefill data when an existing template is selected
 const prefillData = (data: any) => {
   
@@ -105,9 +85,6 @@ const prefillData = (data: any) => {
   subject.value = data.subject;
 };
 
-
-
-
 const getOptions = {
   method: "GET",
   headers: {
@@ -115,9 +92,6 @@ const getOptions = {
       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiZTk3YTIxZjM4ZDc4NDgwYjlhYjdhOTI0M2Q0NjViNzgiLCJkIjoiMTY4MDA5NyIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyODc4Mjd9.qFyxIJYJLihyxfui4QRMOLjJgwBr95z3N3lWRDz89ZU`,
   },
 };
-
-
-
 
 var emailTemplate = await useAuthLazyFetch(
     "https://v1-orm-lib.mars.hipso.cc/email-templates/?offset=0&limit=100&sort_column=id&sort_direction=desc",
@@ -140,7 +114,7 @@ deleteOptions
     }
 
 
-    const editTemplate = (data:any) => {
+const editTemplate = (data:any) => {
    const editOptions = {
     method: "PUT",
   headers: {
@@ -154,5 +128,6 @@ const editTemplateData = useAuthLazyFetchPut (
     `https://v1-orm-lib.mars.hipso.cc/email-templates/${data}`,
 editOptions
 )
+console.log("editTemplateData---->",editTemplateData)
     }
 </script>
