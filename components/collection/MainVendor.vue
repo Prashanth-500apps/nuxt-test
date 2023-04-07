@@ -111,7 +111,7 @@ const editData = (data:object) => {
 }
 
 const deleteTemplateData = useAuthLazyFetchDelete (
-    `https://v1-orm-lib.mars.hipso.cc/email-templates/${data.uid}`,
+    `https://v1-orm-gharpe.mercury.infinity-api.net/api/vendors/${data.name}`,
 deleteOptions
 )
     }
