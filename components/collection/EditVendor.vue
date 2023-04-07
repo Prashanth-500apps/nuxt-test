@@ -64,7 +64,6 @@
 <script setup>
 import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { CheckIcon } from '@heroicons/vue/24/outline'
 
 const open = ref(true)
 let name = ref("")
@@ -75,9 +74,18 @@ const vendorDetails = ref({})
 const emits = defineEmits(["editData"])
 
 const props = defineProps({
-editVendorData: Object,
+ editInfo: Object,
 })
- 
+
+onMounted (()=> {
+   // Assigning data to modal 
+  name.value = props.editInfo.name
+  category.value = props.editInfo.category
+  email.value = props.editInfo.email
+  industry.value = props.editInfo.industry
+})
+
+ // Updating the edited values
 const edit = (data) =>{
     vendorDetails.value = {name:name.value,category:category.value,email:email.value,industry:industry.value}
     open.value = false

@@ -71,7 +71,7 @@
                 <td
                   class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
                 >
-                  <button href="#" class="text-indigo-600 hover:text-indigo-900 mr-4" @click="emits('showEdit',true)">
+                  <button href="#" class="text-indigo-600 hover:text-indigo-900 mr-4" @click="emits('showEdit',person)">
                     Edit
                   </button>
                     <button href="#" class="text-indigo-600 hover:text-indigo-900" @click="emits('delete',person)">
@@ -94,6 +94,8 @@ const emits = defineEmits(["show","showEdit","delete"])
 const props = defineProps({
   vendorData: Object,
 })
+
+ // Get vendors data through props to display
 const vendorInfo = ref(props.vendorData.data._rawValue)
 console.log('vendorData--->', props.vendorData, vendorInfo)
 

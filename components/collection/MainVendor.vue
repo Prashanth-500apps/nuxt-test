@@ -7,24 +7,21 @@
        <CollectionAddVendor v-if="show" @addData="addData" :key="renderAdd"/>
        </div>
        <div v-if="showData">
-       <CollectionEditVendor v-if="showData" :editVendorData="VendorData"  @editData="editData" :key="renderEdit"/>
+       <CollectionEditVendor v-if="showData" :editVendorData="VendorData" :editInfo="editInfo"  @editData="editData" :key="renderEdit"/>
        </div>
   </div>
 
 </template>
 
 <script setup lang="ts">
-import {ref,onMounted} from "vue"
-
-onMounted(()=>{
-console.log("onmounted--->")
-})
+import {ref} from "vue"
 
  // Declaring variables
 const show = ref(false)
 const showData = ref(false)
 const renderEdit = ref(0)
 const renderAdd = ref(0)
+const editInfo = ref({})
 
  // Get all the vendors
 const getOptions = {
@@ -130,8 +127,9 @@ const addVendor = (data) => {
  // Open the edit vendor modal
 const editVendor = (data) => {
   console.log("editVendor----assdasdsda>",data)
-        showData.value = data
+        showData.value = true
         renderEdit.value++
+        editInfo.value = data
     console.log("editVendor--->",data,renderEdit.value)
 }
 </script>
