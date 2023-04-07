@@ -1,8 +1,14 @@
 <template>
     <div>
+      <div>
        <CollectionListVendor :vendorData="vendorData"  @show="addVendor" @showEdit="editVendor" @delete="deleteVendor"/>   
-       <CollectionAddVendor v-if="show && !showData" @addData="addData" />
-       <CollectionEditVendor v-if="showData && !show" :editVendorData="VendorData"  @editData="editData" />
+      </div>
+      <div  v-if="show">
+       <CollectionAddVendor v-if="show" @addData="addData" :key="renderAdd"/>
+       </div>
+       <div v-if="showData">
+       <CollectionEditVendor v-if="showData" :editVendorData="VendorData"  @editData="editData" :key="renderEdit"/>
+       </div>
   </div>
 
 </template>
@@ -13,9 +19,14 @@ import {ref,onMounted} from "vue"
 onMounted(()=>{
 console.log("onmounted--->")
 })
+
+ // Declaring variables
 const show = ref(false)
 const showData = ref(false)
+const renderEdit = ref(0)
+const renderAdd = ref(0)
 
+ // Get all the vendors
 const getOptions = {
   method: "GET",
   headers: {
@@ -30,14 +41,10 @@ var vendorData = useAuthLazyFetch(
 );
 console.log("vendorData--->",vendorData)
 
+ // Add vendor 
 const addData = (data:object) => {
     console.log("data in main--->",data,data.name)
     const postOptions = {
-      method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiZTk3YTIxZjM4ZDc4NDgwYjlhYjdhOTI0M2Q0NjViNzgiLCJkIjoiMTY4MDA5NyIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyODc4Mjd9.qFyxIJYJLihyxfui4QRMOLjJgwBr95z3N3lWRDz89ZU`,
-    },
     body: {
       name: data.name,
       category: data.category,
@@ -68,11 +75,6 @@ const addData = (data:object) => {
 const editData = (data:object) => {
     console.log("data in main--->",data,data.name)
     const editOptions = {
-      method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiZTk3YTIxZjM4ZDc4NDgwYjlhYjdhOTI0M2Q0NjViNzgiLCJkIjoiMTY4MDA5NyIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyODc4Mjd9.qFyxIJYJLihyxfui4QRMOLjJgwBr95z3N3lWRDz89ZU`,
-    },
     body: {
       name: data.name,
       category: data.category,
@@ -93,13 +95,15 @@ const editData = (data:object) => {
     },
   };
 
+ // Updating the vendor based on uid
   const editVendorData =  useAuthLazyFetchPut(
-    `https://v1-orm-gharpe.mercury.infinity-api.net/api/vendors/${data.uid}`,
+    `https://v1-orm-gharpe.mercury.infinity-api.net/api/vendors/${data.name}`,
     editOptions
   );
-  console.log("addVendorData0000---->",editVendorData)
+  console.log("addVendorData0000---->",editVendorData.value)
 }
 
+ // deleting the vendor based on uid 
    const deleteVendor = (data:any) => {
    const deleteOptions = {
     method: "DELETE",
@@ -113,16 +117,21 @@ const deleteTemplateData = useAuthLazyFetchDelete (
     `https://v1-orm-lib.mars.hipso.cc/email-templates/${data.uid}`,
 deleteOptions
 )
-console.log("deleteTemplateData--->",deleteTemplateData)
     }
 
-const addVendor = () => {
-  console.log('addVendor--->', show.value)
-  show.value = true
+ // Open add vendor modal
+const addVendor = (data) => {
+  console.log('addVendor--->', show.value,data)
+  show.value = data
+  renderAdd.value++
   console.log('addVendor 2 --->', show.value)
 }
-const editVendor = () => {
-        showData.value = true
-    // console.log("editVendor--->",data)
+
+ // Open the edit vendor modal
+const editVendor = (data) => {
+  console.log("editVendor----assdasdsda>",data)
+        showData.value = data
+        renderEdit.value++
+    console.log("editVendor--->",data,renderEdit.value)
 }
 </script>

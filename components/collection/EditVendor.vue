@@ -77,14 +77,10 @@ const emits = defineEmits(["editData"])
 const props = defineProps({
 editVendorData: Object,
 })
-console.log("editVendorData---->",editVendorData)
-
+ 
 const edit = (data) =>{
-    console.log("edit--->")
     vendorDetails.value = {name:name.value,category:category.value,email:email.value,industry:industry.value}
-    console.log("vendorDEtailss---->",vendorDetails,vendorDetails.value)
     open.value = false
     emits("editData",vendorDetails.value)
-    console.log("edit--->")
 }
 </script>
