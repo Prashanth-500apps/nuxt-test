@@ -127,42 +127,6 @@
                     class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                     for="inline-full-name"
                   >
-                    Details
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="text"
-                    v-model="details"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Specifications
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="text"
-                    v-model="specifications"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
                     Possession Date
                   </label>
                 </div>
@@ -172,150 +136,6 @@
                     id="inline-full-name"
                     type="date"
                     v-model="possessionDate"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Age of the Project
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="number"
-                    v-model="ageOfProject"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Logo Url
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="text"
-                    v-model="logoUrl"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Total Project Area
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="text"
-                    v-model="totalProjectArea"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Metric
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="number"
-                    v-model="metric"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Default Image Url
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="text"
-                    v-model="defaultImageUrl"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Visit Count
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="number"
-                    v-model="visitCount"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Rera Approved
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="text"
-                    v-model="reraApproved"
-                  />
-                </div>
-              </div>
-              <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                  <label
-                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    for="inline-full-name"
-                  >
-                    Approve Status
-                  </label>
-                </div>
-                <div class="md:w-2/3">
-                  <input
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                    id="inline-full-name"
-                    type="text"
-                    v-model="approveStatus"
                   />
                 </div>
               </div>
@@ -347,7 +167,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref,defineProps, onMounted } from 'vue'
+import { ref, defineProps, onMounted } from 'vue'
 import {
   Dialog,
   DialogPanel,
@@ -363,52 +183,30 @@ const props = defineProps({
 const open = ref(true)
 const name = ref('')
 const listingTypeName = ref('')
-const category = "Residential" 
-const subCategory =  "Apartment"
-const status = "Fully Constructed"
-const details = ref('')
-const specifications = ref('')
-const possessionDate = "2023-04-07"
-const ageOfProject = ref('')
-const logoUrl = ref('')
-const totalProjectArea = 0
-const metric = "sq.ft"
-const defaultImageUrl = ref('')
-const visitCount = 0
-const reraApproved = true
-const approveStatus = "Active"
+const category = 'Residential'
+const subCategory = 'Apartment'
+const status = 'Fully Constructed'
+const possessionDate = '2023-04-07'
 const projectDetails = ref({})
 
-const emits = defineEmits(["editProject"])
+const emits = defineEmits(['editProject'])
 
- onMounted(() => {
-    console.log("updateData in monyed---->",props.updateData)
-    name.value  = props.updateData.name
-    listingTypeName.value=props.updateData.listing_type_name
-    // category.value= "Residential"
-    // subCategory.value = props.updateData.sub_category
-    // status.value = props.updateData.status
-    details.value = props.updateData.details
-    specifications.value = props.updateData.specifications
-    // possessionDate.value = props.updateData.possessionDate
-    ageOfProject.value = props.updateData.age_of_the_project
-    logoUrl.value = props.updateData.logo_url
-    // totalProjectArea.value = props.updateData.total_project_area
-    // metric.value = props.updateData.metric
-    defaultImageUrl.value = props.updateData.default_image_url
-    // visitCount.value = props.updateData.visit_count
-    // reraApproved.value= props.updateData.rera_approved
-    // approveStatus.value = props.updateData.approve_status
-    console.log("in addd--->",projectDetails.value)
-    // emits("addProject",projectDetails.value)
-    // open.value = false
+onMounted(() => {
+  console.log('onmounted---->', props.updateData)
+  name.value = props.updateData.name
+  listingTypeName.value = props.updateData.listing_type_name
 })
-const edit = () =>{
-      projectDetails.value = {name : name.value,listingTypeName:listingTypeName.value,category:category.value,subCategory:subCategory.value,staus:status.value,
-    details:details.value,specifications:specifications.value,possessionDate:possessionDate.value,ageOfProject:ageOfProject.value,logoUrl:logoUrl.value,
-    totalProjectArea:totalProjectArea.value,metric:metric.value,defaultImageUrl:defaultImageUrl.value,uid:props.updateData.uid,visitCount:visitCount.value,reraApproved:reraApproved.value,approveStatus:approveStatus.value}
-    console.log("in ediittt--->",projectDetails.value)
-    emits("editProject",projectDetails.value)
-    open.value = false
+const edit = () => {
+  let body = {
+    name: name.value,
+    listing_type_name: listingTypeName.value,
+    category: 'Residential',
+    sub_category: 'Apartment',
+    status: 'Fully Constructed',
+    possession_date: '2023-04-07',
+    uid: props.updateData.uid,
+  }
+  emits('editProject', body)
+  open.value = false
 }
 </script>
