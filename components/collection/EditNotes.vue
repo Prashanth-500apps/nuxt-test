@@ -55,7 +55,7 @@
                 <button
                   type="button"
                   class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
-                  @click="edit"
+                  @click="emits('editNote',props.updateNote),open=false"
                 >
                   Edit Note
                 </button>
@@ -95,15 +95,4 @@ const props = defineProps({
   updateNote: Object,
 })
 
-const edit = () => {
-  let body = {
-    note: note.value,
-    entity_id: 'string',
-    project_id: "12",
-    entity: 'CONTACTS',
-    uid: props.updateNote.uid,
-  }
-  emits('editNote',props.updateNote)
-  open.value = false
-}
 </script>
