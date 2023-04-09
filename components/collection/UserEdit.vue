@@ -35,34 +35,34 @@
                           <label />
                           Lead Name
                           <input
-                            v-model="leadName"
+                            v-model="updateLead.name"
                             type="text"
                             class="block mb-3 px-3 rounded-md border-0 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6 w-[100%]"
                           />
                           <label>Source</label>
                           <input
-                            v-model="source"
+                            v-model="updateLead.source"
                             id="text"
                             class="block mb-3 px-3 rounded-md border-0 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6 w-[100%]"
                           />
                           <label />
                           Phone Number
                           <input
-                            v-model="phoneNumber"
+                            v-model="updateLead.phone_number"
                             type="number"
                             class="block mb-3 px-3 rounded-md border-0 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6 w-[100%]"
                           />
                           <label />
                           Email
                           <input
-                            v-model="email"
+                            v-model="updateLead.email"
                             type="text"
                             class="block mb-3 px-3 rounded-md border-0 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6 w-[100%]"
                           />
                           <label />
                           Status
                           <input
-                            v-model="status"
+                            v-model="updateLead.status"
                             id="level-type"
                             class="block mb-3 px-3 rounded-md border-0 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6 w-[100%]"
                           />
@@ -76,7 +76,7 @@
                           <label />
                           Mode Of Payment
                           <select
-                            v-model="modeOfPayment"
+                            v-model="updateLead.mode_of_payment"
                             type="level-type"
                             class="block mb-3 px-3 rounded-md border-0 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6 w-[100%]"
                           >
@@ -109,7 +109,7 @@
                               <button
                                 type="button"
                                 class="rounded-md bg-indigo-600 py-2 px-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                @click="editLead"
+                                @click="emits('editLeadBody',props.updateLead),open = false"
                               >
                                 Save
                               </button>
@@ -144,49 +144,6 @@ const emits = defineEmits(["editLeadBody"])
 const props = defineProps({
     updateLead : Object
 })
-
 const open = ref(true)
-let leadName = ref('')
-let phoneNumber = ref('')
-let status = ref('')
-let email = ref('')
-let address = ref('')
-let source = ref('')
-let modeOfPayment = ref('')
 
-onMounted(()=>{
-  console.log("mounted in edit---->",props.updateLead)
-  leadName.value = props.updateLead.name,
-  phoneNumber.value = props.updateLead.phone_number,
-  status.value = props.updateLead.status,
-  email.value = props.updateLead.email,
-  address.value = props.updateLead.address,
-  source.value = props.updateLead.source,
-  modeOfPayment.value = props.updateLead.mode_of_payment
-})
-
-const editLead = () => {
-  console.log('editLead---->')
-  let body = {
-    name: leadName.value,
-    phone_number: phoneNumber.value,
-    status: "Active",
-    email: email.value,
-    address: address.value,
-    source: "GharPe",
-    mode_of_payment: modeOfPayment.value,
-    purpose_of_buying: 'Investment',
-    preferred_floor: 0,
-    facing: 'string',
-    starred: true,
-    down_payment: 'string',
-    is_loan_required: true,
-    cdata1: 'string',
-    cdata2: 'string',
-    project_id: 'string',
-    uid: props.updateLead.uid
-  }
-  emits("editLeadBody",body)
-  open.value=false
-}
 </script>

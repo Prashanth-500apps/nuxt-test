@@ -29,57 +29,43 @@ const addRender = ref(0)
 const editRender = ref(0)
 const showEditSidebar = ref(false)
 const updateLead = ref({})
-// const url = ref('https://v1-orm-gharpe.mercury.infinity-api.net/api/projects/')
+const url = ref(`https://v1-orm-gharpe.mercury.infinity-api.net/api/leads/`)
 
-const usersData = useAuthLazyFetch(
-  "https://v1-orm-gharpe.mercury.infinity-api.net/api/leads/",
-)
-console.log("userdData--->",usersData)
+const usersData = useAuthLazyFetch(url.value)
 
 const openLead = (data) => {
-    open.value = data
-    addRender.value++
-    console.log("data in openLead---->",data)
+  open.value = data
+  addRender.value++
 }
-
-let editIndex = ref('')
 
 const showEdit = (data) => {
   showEditSidebar.value = true
-  console.log("data inedit--->",data, showEditSidebar.value)
   editRender.value++
   updateLead.value = data
 }
 
 let userInfo = ref(usersData.data._rawValue)
 
-const addBody = (body: Object) => {
+const addBody = async (body: Object) => {
   const postOptions = {
     body: body,
   }
-  console.log("body in add--->",)
-  const addData = useAuthLazyFetchPost("https://v1-orm-gharpe.mercury.infinity-api.net/api/leads/",postOptions
-  )
+  await useAuthLazyFetchPost(url.value, postOptions)
   userInfo.value.unshift(body)
 }
 
-const editProject = (body: Object) => {
+const editProject = async (body: Object) => {
   const putOptions = {
     body: body,
   }
-  const editData = useAuthLazyFetchPut(
-    `https://v1-orm-gharpe.mercury.infinity-api.net/api/leads/${body.uid}`,
-    putOptions,
-  )
-//     const { data: response } =  useAuthLazyFetch("https://v1-orm-gharpe.mercury.infinity-api.net/api/leads/?offset=0&limit=100&sort_column=id&sort_direction=desc","");
-// console.log("response in edit--->",response)
-// userInfo.value = response.value;
- // updateLead.value.$set(editIndex.value,body)
+  await useAuthLazyFetchPut(`${url.value}${body.uid}`, putOptions)
+  const { data: response } = await useAuthLazyFetch(url.value)
+  userInfo.value = response.value
 }
 
-const deleteProject = (data: object, index) => {
-  const deleteProjectData = useAuthLazyFetchDelete(
-    `https://v1-orm-gharpe.mercury.infinity-api.net/api/leads/${data.uid}`,
+const deleteProject = async (data: object, index) => {
+  await useAuthLazyFetchDelete(
+    `${url.value}${data.uid}`,
   )
   userInfo.value.splice(index, 1)
 }

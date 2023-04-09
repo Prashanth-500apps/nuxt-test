@@ -151,7 +151,6 @@ let source = ref('')
 let modeOfPayment = ref('')
 
 const saveLead = () => {
-  console.log('saveLEad---->')
   let body = {
     name: leadName.value,
     phone_number: phoneNumber.value,

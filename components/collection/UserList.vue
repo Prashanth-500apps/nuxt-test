@@ -8,7 +8,8 @@
               <button
                 type="button"
                 class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-               @click="emits('openLead',true)">
+                @click="emits('openLead', true)"
+              >
                 Add Lead
               </button>
             </div>
@@ -61,10 +62,7 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-              <tr
-                v-for="(user, index) in userInfo"
-                :key="index"
-              >
+              <tr v-for="(user, index) in userInfo" :key="index">
                 <td
                   class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
                 >
@@ -94,13 +92,15 @@
                   <button
                     href="#"
                     class="text-indigo-600 hover:text-indigo-900 mr-4"
-                  @click="emits('edit',user)">
+                    @click="emits('edit', user)"
+                  >
                     Edit
                   </button>
                   <button
                     href="#"
                     class="text-indigo-600 hover:text-indigo-900 mr-4"
-                  @click="emits('deleteProject',user,index)">
+                    @click="emits('deleteProject', user, index)"
+                  >
                     Delete
                   </button>
                 </td>
@@ -114,13 +114,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { defineEmits, defineProps } from 'vue'
 
 const props = defineProps({
   userInfo: Object,
 })
-const emits = defineEmits(["openLead","edit","deleteProject"])
-onMounted(() => {
-  console.log('usersData---->', props.userInfo)
-})
+const emits = defineEmits(['openLead', 'edit', 'deleteProject'])
 </script>
