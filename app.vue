@@ -1,6 +1,8 @@
 <template>
   <div>
    <!-- <NuxtWelcome /> -->
-   <CollectionMain />
+   <!-- <CollectionMain /> -->
+  <!-- <CollectionUserMain /> -->
+  <CollectionUserMain />
   </div>
 </template>
