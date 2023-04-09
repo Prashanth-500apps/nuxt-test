@@ -83,7 +83,7 @@
                   <button
                     href="#"
                     class="text-indigo-600 hover:text-indigo-900 mr-4"
-                    @click="emits('showEdit', user, index)"
+                    @click="emits('showEdit', user)"
                   >
                     Edit
                   </button>

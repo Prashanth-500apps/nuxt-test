@@ -45,7 +45,7 @@
                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-full-name"
                     type="text"
-                    v-model="name"
+                    v-model="updateData.name"
                   />
                 </div>
               </div>
@@ -63,7 +63,7 @@
                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-full-name"
                     type="text"
-                    v-model="listingTypeName"
+                    v-model="updateData.listing_type_name"
                   />
                 </div>
               </div>
@@ -81,7 +81,7 @@
                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-full-name"
                     type="text"
-                    v-model="category"
+                    v-model="updateData.category"
                   />
                 </div>
               </div>
@@ -99,7 +99,7 @@
                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-full-name"
                     type="text"
-                    v-model="subCategory"
+                    v-model="updateData.sub_category"
                   />
                 </div>
               </div>
@@ -117,7 +117,7 @@
                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-full-name"
                     type="text"
-                    v-model="status"
+                    v-model="updateData.status"
                   />
                 </div>
               </div>
@@ -135,7 +135,7 @@
                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-full-name"
                     type="date"
-                    v-model="possessionDate"
+                    v-model="updateData.possession_date"
                   />
                 </div>
               </div>
@@ -145,7 +145,7 @@
                 <button
                   type="button"
                   class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
-                  @click="edit"
+                  @click="emits('editProject', updateData), (open = false)"
                 >
                   Edit
                 </button>
@@ -181,32 +181,6 @@ const props = defineProps({
 })
 
 const open = ref(true)
-const name = ref('')
-const listingTypeName = ref('')
-const category = 'Residential'
-const subCategory = 'Apartment'
-const status = 'Fully Constructed'
-const possessionDate = '2023-04-07'
-const projectDetails = ref({})
 
 const emits = defineEmits(['editProject'])
-
-onMounted(() => {
-  console.log('onmounted---->', props.updateData)
-  name.value = props.updateData.name
-  listingTypeName.value = props.updateData.listing_type_name
-})
-const edit = () => {
-  let body = {
-    name: name.value,
-    listing_type_name: listingTypeName.value,
-    category: 'Residential',
-    sub_category: 'Apartment',
-    status: 'Fully Constructed',
-    possession_date: '2023-04-07',
-    uid: props.updateData.uid,
-  }
-  emits('editProject', body)
-  open.value = false
-}
 </script>

@@ -183,7 +183,6 @@ const category = 'Residential'
 const subCategory = 'Apartment'
 const status = 'Fully Constructed'
 const possessionDate = '2023-04-07'
-const projectDetails = ref({})
 
 const emits = defineEmits(['addProject'])
 

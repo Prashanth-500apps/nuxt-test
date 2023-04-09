@@ -1,6 +1,6 @@
 <template>
   <div>
    <!-- <NuxtWelcome /> -->
-   <CollectionMain />
+   <CollectionMainProjects />
   </div>
 </template>

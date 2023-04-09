@@ -1,8 +1,7 @@
 <template>
   <div>
     <div>
-      <CollectionListProject
-        :key="listRender"
+      <CollectionListProjects
         :projectInfo="projectInfo"
         @showAdd="showAdd"
         @showEdit="showEdit"
@@ -10,10 +9,10 @@
       />
     </div>
     <div v-if="show">
-      <CollectionAddProject @addProject="addProject" :key="renderAdd" />
+      <CollectionAddProjects @addProject="addProject" :key="renderAdd" />
     </div>
     <div v-if="showEditModal">
-      <CollectionEditProject
+      <CollectionEditProjects
         @editProject="editProject"
         :updateData="updateData"
         :key="renderEdit"
@@ -23,63 +22,49 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const show = ref(false)
 const renderAdd = ref(0)
 const renderEdit = ref(0)
 const showEditModal = ref(false)
-const listRender = ref(0)
 const updateData = ref({})
-// const url = ref('https://v1-orm-gharpe.mercury.infinity-api.net/api/projects/')
+const url = ref('https://v1-orm-gharpe.mercury.infinity-api.net/api/projects/')
 
-const projectsData = useAuthLazyFetch(
-  `https://v1-orm-gharpe.mercury.infinity-api.net/api/projects/`,
-)
+const projectsData = useAuthLazyFetch(url.value)
 
-const showAdd = (data: Boolean) => {
+const showAdd = (data: any) => {
   show.value = data
   renderAdd.value++
 }
 
-let editIndex = ref('')
-
-const showEdit = (data, index) => {
+const showEdit = (data) => {
   showEditModal.value = data
-  editIndex.value = index
   renderEdit.value++
   updateData.value = data
 }
 
 let projectInfo = ref(projectsData.data._rawValue)
 
-const addProject = (body: Object) => {
+const addProject = async (body: Object) => {
   const postOptions = {
     body: body,
   }
-  const addData = useAuthLazyFetchPost(
-    `https://v1-orm-gharpe.mercury.infinity-api.net/api/projects/`,
-    postOptions,
-  )
+  await useAuthLazyFetchPost(url.value, postOptions)
   projectInfo.value.unshift(body)
 }
 
-const editProject = (body: Object) => {
+const editProject = async (body: Object) => {
   const putOptions = {
     body: body,
   }
-  const editData = useAuthLazyFetchPut(
-    `https://v1-orm-gharpe.mercury.infinity-api.net/api/projects/${body.uid}`,
-    putOptions,
-  )
-  listRender.value++
-  // projectInfo.value.$set(editIndex.value,body)
+  await useAuthLazyFetchPut(`${url.value}${body.uid}`, putOptions)
+  const { data: response } = await useAuthLazyFetch(url.value)
+  projectInfo.value = response.value
 }
 
-const deleteProject = (data: object, index) => {
-  const deleteProjectData = useAuthLazyFetchDelete(
-    `https://v1-orm-gharpe.mercury.infinity-api.net/api/projects/${data.uid}`,
-  )
+const deleteProject = async (data: object, index) => {
+  await useAuthLazyFetchDelete(`${url.value}${data.uid}`)
   projectInfo.value.splice(index, 1)
 }
 </script>
