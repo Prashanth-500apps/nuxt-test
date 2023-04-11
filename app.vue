@@ -1,6 +1,6 @@
 <template>
   <div>
    <!-- <NuxtWelcome /> -->
-   <CollectionMain />
+   <CollectionHierarchyMain />
   </div>
 </template>
