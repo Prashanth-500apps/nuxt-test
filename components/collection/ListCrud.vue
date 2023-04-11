@@ -13,6 +13,15 @@
                 Add Contact
               </button>
             </div>
+            <div class="ml-9">
+              <label> Search Student : </label>
+              <input
+                v-model="search"
+                type="text"
+                @input="handleInput(search)"
+                placeholder="Please search by Name"
+              />
+            </div>
           </div>
           <table class="min-w-full divide-y divide-gray-300">
             <thead>
@@ -95,107 +104,102 @@
                     <TrashIcon class="h-6 w-6" aria-hidden="true" />
                   </button>
                 </td>
-              </tr>
-              <TransitionRoot as="template" :show="open">
-                <Dialog
-                  as="div"
-                  class="relative z-10"
-                  @close="open = false"
-                >
-                  <TransitionChild
-                    as="template"
-                    enter="ease-out duration-300"
-                    enter-from="opacity-0"
-                    enter-to="opacity-100"
-                    leave="ease-in duration-200"
-                    leave-from="opacity-100"
-                    leave-to="opacity-0"
-                  >
-                    <div
-                      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                    />
-                  </TransitionChild>
-
-                  <div class="fixed inset-0 z-10 overflow-y-auto">
-                    <div
-                      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+                <TransitionRoot as="template" :show="open">
+                  <Dialog as="div" class="relative z-10" @close="open = false">
+                    <TransitionChild
+                      as="template"
+                      enter="ease-out duration-300"
+                      enter-from="opacity-0"
+                      enter-to="opacity-100"
+                      leave="ease-in duration-200"
+                      leave-from="opacity-100"
+                      leave-to="opacity-0"
                     >
-                      <TransitionChild
-                        as="template"
-                        enter="ease-out duration-300"
-                        enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        enter-to="opacity-100 translate-y-0 sm:scale-100"
-                        leave="ease-in duration-200"
-                        leave-from="opacity-100 translate-y-0 sm:scale-100"
-                        leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                      <div
+                        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                      />
+                    </TransitionChild>
+
+                    <div class="fixed inset-0 z-10 overflow-y-auto">
+                      <div
+                        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
                       >
-                        <DialogPanel
-                          class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+                        <TransitionChild
+                          as="template"
+                          enter="ease-out duration-300"
+                          enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                          enter-to="opacity-100 translate-y-0 sm:scale-100"
+                          leave="ease-in duration-200"
+                          leave-from="opacity-100 translate-y-0 sm:scale-100"
+                          leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                          <div class="sm:flex sm:items-start">
-                            <div
-                              class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
-                            >
-                              <ExclamationTriangleIcon
-                                class="h-6 w-6 text-red-600"
-                                aria-hidden="true"
-                              />
-                            </div>
-                            <div
-                              class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
-                            >
-                              <DialogTitle
-                                as="h3"
-                                class="text-base font-semibold leading-6 text-gray-900"
+                          <DialogPanel
+                            class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+                          >
+                            <div class="sm:flex sm:items-start">
+                              <div
+                                class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
                               >
-                                Are you sure ?
-                              </DialogTitle>
-                              <div class="mt-2">
-                                <p class="text-sm text-gray-500">
-                                  Deleting will permanently remove. This cannot
-                                  be undone.
-                                </p>
+                                <ExclamationTriangleIcon
+                                  class="h-6 w-6 text-red-600"
+                                  aria-hidden="true"
+                                />
+                              </div>
+                              <div
+                                class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
+                              >
+                                <DialogTitle
+                                  as="h3"
+                                  class="text-base font-semibold leading-6 text-gray-900"
+                                >
+                                  Are you sure ?
+                                </DialogTitle>
+                                <div class="mt-2">
+                                  <p class="text-sm text-gray-500">
+                                    Deleting will permanently remove. This
+                                    cannot be undone.
+                                  </p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
-                            <button
-                              type="button"
-                              class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto"
-                              @click="emits('deleteItem',user,index)"
-                            >
-                              Delete
-                            </button>
-                            <button
-                              type="button"
-                              class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:ml-3 sm:mt-0 sm:w-auto"
-                              @click="open = false"
-                              ref="cancelButtonRef"
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                        </DialogPanel>
-                      </TransitionChild>
+                            <div class="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
+                              <button
+                                type="button"
+                                class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto"
+                                @click="
+                                  emits('deleteItem', user, index),
+                                    (open = false)
+                                "
+                              >
+                                Delete
+                              </button>
+                              <button
+                                type="button"
+                                class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:ml-3 sm:mt-0 sm:w-auto"
+                                @click="open = false"
+                                ref="cancelButtonRef"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </DialogPanel>
+                        </TransitionChild>
+                      </div>
                     </div>
-                  </div>
-                </Dialog>
-              </TransitionRoot>
+                  </Dialog>
+                </TransitionRoot>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-     <!-- <Bar
-    id="my-chart-id"
-    :options="chartOptions"
-    :data="chartData"
-  /> -->
+    <Bar :data="chartData" :options="chartOptions" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { PencilSquareIcon, TrashIcon } from '@heroicons/vue/24/outline'
+import { PencilSquareIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import {
   Dialog,
   DialogPanel,
@@ -203,24 +207,56 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import { ref, defineEmits, onMounted, defineProps } from 'vue'
+import { Bar } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+import { ref, defineEmits, onMounted, defineProps } from "vue";
+const emits = defineEmits(["openSlideout", "deleteItem"]);
 
-const emits = defineEmits(['openSlideout', 'deleteItem'])
+let search = ref("");
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const props = defineProps({
   formData: Array,
-})
-// let labels = ref([])
-// let datasets = ref([])
-//  const chartData = () => {
-//         labels.value = [ 'January', 'February', 'March' ],
-//         datasets.value = [ { data: [40, 20, 12] } ]
-//       }
-//     const  chartOptions =  {
-//         responsive: true
-//       }
+});
 
-let open = ref(false)
+onMounted(() => {
+  console.log("labels---->", props.formData, Object.keys(props.formData));
+});
+
+const chartData = {
+  labels: Object.keys(props.formData),
+  datasets: [
+    {
+      data: Object.values(props.formData),
+      backgroundColor: "rgba(20, 255, 0, 0.3)",
+      borderColor: "rgba(100, 255, 0, 1)",
+      borderWidth: 2,
+    },
+  ],
+};
+const handleInput = (data) => {
+  console.log("handle--input--->", data);
+  props.formData.find((item) => {
+    console.log("item and data--->", item, data);
+    if (item && item["name"] && item["name"].includes(data)) {
+      console.log("inside includes---->", item);
+    //   props.formData = item
+      // localStorage.setItem("updateData",)
+      // user.name = item.name
+    }
+  });
+};
+const chartOptions = {
+  responsive: true,
+};
+
+let open = ref(false);
 </script>

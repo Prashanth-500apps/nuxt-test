@@ -1,28 +1,19 @@
 <template>
   <div>
     <div>
-      <CollectionListCrud
-        @openSlideout=";(open = true), renderAdd++"
-        :formData="updateData"
-        @editSlideout="showEdit"
-        @deleteItem="deleteItem"
-      />
+      <CollectionListCrud @openSlideout="open = true,renderAdd++" :formData="updateData" @editSlideout="showEdit" @deleteItem="deleteItem"/>
     </div>
     <div v-if="open">
       <CollectionAddCrud @addedData="addedData" :key="renderAdd" />
     </div>
-    <div v-if="showEditSlideout">
-      <CollectionEditCrud
-        @editData="editData"
-        :updateValue="updateValue"
-        :key="renderEdit"
-      />
-    </div>
+  <div v-if="showEditSlideout"> 
+    <CollectionEditCrud  @editData="editData" :updateValue="updateValue" :key="renderEdit"/>
+  </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref,onMounted } from 'vue'
 
 let open = ref(false)
 let showEditSlideout = ref(false)
@@ -59,19 +50,20 @@ let updateData = ref(formData.value)
 let updateValue = ref([])
 
 const showEdit = (data) => {
-  showEditSlideout.value = true
-  updateValue.value = data
-  renderEdit.value++
+    showEditSlideout.value = true
+    updateValue.value = data
+    renderEdit.value++
 }
 
-onMounted(() => {
+onMounted(()=>{
   updateData.value = JSON.parse(localStorage.getItem('updateData'))
 })
 
 const addedData = (data) => {
-  updateData.value.push(data)
+ updateData.value && updateData.value.length>=0 ? updateData.value.push(data) : updateData.value = data
+ console.log("updateValue---->",updateData.value)
   localStorage.setItem('updateData', JSON.stringify(updateData.value))
-  updateData.value = JSON.parse(localStorage.getItem('updateData'))
+   updateData.value = JSON.parse(localStorage.getItem('updateData'))
 }
 
 const editData = (data) => {
@@ -84,12 +76,11 @@ const editData = (data) => {
       item.education = data.education
     }
   })
-  localStorage.setItem('updateData', JSON.stringify(updateData.value))
+   localStorage.setItem('updateData', JSON.stringify(updateData.value))
 }
 
-const deleteItem = (data, index) => {
-    console.log("data and index in delete---->",data,index)
-  updateData.value.splice(index, 1)
-  localStorage.setItem('updateData', JSON.stringify(updateData.value))
+const deleteItem = (data,index) => {
+    updateData.value.splice(index,1)
+localStorage.setItem('updateData', JSON.stringify(updateData.value))
 }
 </script>
