@@ -229,6 +229,9 @@
     <div class="mt-[-7.8rem]">
       <CollectionInfoTwo />
     </div>
+    <div class="mt-[-11.8rem]">
+      <CollectionAnimation />
+    </div>
     <div class="mt-[-7.8rem]">
       <CollectionPrice />
     </div>
