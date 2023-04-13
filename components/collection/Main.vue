@@ -1,6 +1,6 @@
 <template>
     <div>
-       <CollectionList />
+       <CollectionHome />
     </div>
 </template>
 
