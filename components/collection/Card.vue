@@ -4,8 +4,8 @@
   >
     <ul role="list" class="divide-y divide-gray-200">
       <div class="flex justify-around">
-        <p class="font-semibold ml-[16.4rem] text-lg">{{ company }}</p>
-        <p class="font-semibold ml-[-12.8rem] text-lg">{{ category }}</p>
+        <p class="font-semibold ml-[14.4rem] text-lg">{{ company }}</p>
+        <p class="font-semibold ml-[-14.8rem] text-lg">{{ category }}</p>
         <p class="font-semibold ml-[-6.8rem] text-lg">{{ technologies }}</p>
         <p class="py-3.5 pl-4 pr-3 text-center font-semibold text-gray sm:pl-0 text-lg">{{ emails }}</p>
       </div>
