@@ -1,7 +1,7 @@
 <template>
-    <div>
-       <CollectionList />
-    </div>
+  <div>
+    <CollectionCard />
+  </div>
 </template>
 
 <script setup lang="ts">
