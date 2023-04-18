@@ -1,6 +1,6 @@
 <template>
     <div>
-       <CollectionList />
+       <CollectionCard />
     </div>
 </template>
 
