@@ -1,16 +1,16 @@
 <template>
   <div class="py-5 flex-col space-y-6 md:px-56 py-23 sm:items-center px-2 flex gap-4 lg:gap-0">
-    <div class="lg:w-full md:flex gap-4 text-gray-800 sm: flex">
+    <div class="lg:w-full hidden md:flex gap-4 text-gray-800 lg:visible">
       <div v-for="item in headers" :key="item.id" class="py-2 md:flex-1 md: grid-cols-4 gap-2 sm: w-full">
         <h3 class="text-base md:text-lg font-semibold text-gray-900">{{ item.name }}</h3>
       </div>
     </div>
     <div v-for="application in applications" :key="application.id"
-      class="lg:w-full md:w-full sm:w-full bg-gray-100 relative shadow rounded-lg text-gray-800 hover:shadow-lg cursor-pointer flex pl-0 p-0"
+      class="w-full bg-gray-100 relative shadow rounded-lg text-gray-800 hover:shadow-lg cursor-pointer"
     > 
-      <div class="lg:flex py-2 justify-around sm: flex-1 md:grid-cols-4 sm: w-full grid-cols-4 gap-4 flex">
-        <div class="flex-shrink-0">
-          <img class="lg:h-12 w-12 md: h-8 md:w-8 rounded-lg" :src="application.logo" alt="" />
+      <div class="lg:flex py-2 justify-around md:grid-cols-4">
+        <div class="flex-shrink-0 flex md:flex-none justify-end md:justify-end">
+          <img class="lg:h-12 w-12 ml-0 md:h-8 md:w-8 rounded-lg" :src="application.logo" alt="" />
         </div>
         <div>
           <p class="lg:h-12 w-12 md:h-8 md:w-8 rounded-lg">
